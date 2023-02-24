@@ -88,4 +88,12 @@ pp drg1
 class Hobbit
     attr_reader :name, :disposition, :age
 
-    def
+    def initialize(name, disposition, age = 0)
+        @name = name
+        @disposition = disposition
+        @age = 0
+    end
+end
+
+hob1 = Hobbit.new("Fred", "grumpy")
+p hob1
