@@ -86,14 +86,38 @@ pp drg1
 #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 class Hobbit
-    attr_reader :name, :disposition, :age
+    attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
 
-    def initialize(name, disposition, age = 0)
+    def initialize(name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
         @name = name
         @disposition = disposition
         @age = 0
+        @is_adult = false
+        @is_old = false
+        @has_ring = false
     end
+
+    def celebrate_birthday
+        @age = @age + 1
+        if @age >= 33 && @age < 101
+            @is_adult = true
+        elsif @age >= 101
+            @is_old = true
+            @is_adult = false
+        end
+    end
+
+    def wear_ring
+        if @name == "Frodo"
+            @has_ring = true
+        end
+    end 
 end
 
 hob1 = Hobbit.new("Fred", "grumpy")
 p hob1
+104.times { hob1.celebrate_birthday }
+pp hob1
+
+hob2 = Hobbit.new("Frodo", "sunny")
+pp hob2
