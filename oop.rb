@@ -88,30 +88,29 @@ pp drg1
 class Hobbit
     attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
 
-    def initialize(name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
+    def initialize(name, disposition)
         @name = name
         @disposition = disposition
         @age = 0
         @is_adult = false
         @is_old = false
         @has_ring = false
+    
+        if @name == "Frodo"
+            @has_ring = true
+        end
+    
     end
 
     def celebrate_birthday
         @age = @age + 1
-        if @age >= 33 && @age < 101
-            @is_adult = true
-        elsif @age >= 101
+        if @age >= 101
             @is_old = true
-            @is_adult = false
+        elsif @age >= 33
+            @is_adult = true
         end
     end
 
-    def wear_ring
-        if @name == "Frodo"
-            @has_ring = true
-        end
-    end 
 end
 
 hob1 = Hobbit.new("Fred", "grumpy")
@@ -120,4 +119,15 @@ p hob1
 pp hob1
 
 hob2 = Hobbit.new("Frodo", "sunny")
+12.times { hob2.celebrate_birthday }
 pp hob2
+
+
+# def initialize(name, disposition)
+#     @name = name
+#     @disposition = disposition
+#     @age = 0
+#     @is_adult = false
+#     @is_old = false
+#     @has_ring = @name == "Frodo"
+# end
